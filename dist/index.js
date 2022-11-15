@@ -1,24 +1,20 @@
 "use strict";
-class Account {
-    constructor(id, owner, balance) {
-        this.id = id;
-        this.owner = owner;
-        this.balance = balance;
+class Car {
+    start() {
+        Car._activeCars++;
     }
-    deposit(amount) {
-        if (amount < 0) {
-            throw new Error("非法数值");
-        }
-        this.balance += amount;
+    stop() {
+        Car._activeCars--;
     }
-    withdraw(amount) {
-        if (this.balance < amount) {
-            throw new Error("当前余额不足");
-        }
-        this.balance -= amount;
+    static get activeCars() {
+        return Car._activeCars;
     }
 }
-let account = new Account(1, '子龍', 0);
-account.deposit(20);
-console.log(account.balance);
+Car._activeCars = 0;
+let car1 = new Car();
+let car2 = new Car();
+car1.start();
+console.log(Car.activeCars);
+car2.start();
+console.log(Car.activeCars);
 //# sourceMappingURL=index.js.map
