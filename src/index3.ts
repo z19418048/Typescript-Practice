@@ -14,14 +14,30 @@ interface Calendar {
     removeEvent():void 
 }
 
-class GoogleCalender implements Calendar{
-    constructor(public name:string){
+interface CloudCalender extends Calendar{
+    sync():void
+}
+interface Account {
+    name: string;
+    password: string;
+    login(): void
+}
+class GoogleCalender implements CloudCalender, Account{
+    constructor(public name:string, public password:string){
+    }
+    login(): void {
+        throw new Error("Method not implemented.");
     }
     addEvent(): void {
     }
     removeEvent(): void {
     }
+    sync(): void {
+        console.log('');
+        
+    }
 }
 
-let googleCalender = new GoogleCalender('个人')
+let googleCalender = new GoogleCalender('个人','123')
 googleCalender.addEvent()
+console.log(googleCalender);
